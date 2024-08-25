@@ -1,0 +1,21 @@
+import pytest
+import pandas as pd
+from program import CountValues
+
+class TestCountValues:
+    def test_count_values(self):
+        # Créer un DataFrame de test
+        data = {'col1': [1, 2, 3, 1, 2, 3],
+                'col2': [4, 5, 6, 7, 8, 9],
+                'col3': ['a', 'b', 'c', 'a', 'b', 'c']}
+        df = pd.DataFrame(data)
+        
+        # Créer une instance de CountValues
+        count_values = CountValues(df)
+        
+        # Appeler la méthode count_values_by_block
+        result = count_values.count_values_by_block('col3')
+        
+        # Vérifier le résultat attendu
+        expected_result = {'a': 2, 'b': 2, 'c': 2}
+        assert result == expected_result
